@@ -59,25 +59,59 @@ namespace Trigrams
     class Trigrams64
     {
         /// <summary>
-        /// 八卦序號
+        /// 六十四卦序號
         /// </summary>
         public int sequence { get; set; }
         /// <summary>
-        /// 八卦名(Ex: 地天泰)
+        /// 六十四卦名(Ex: 地天泰)
         /// </summary>
         public string allname { get; set; }
         /// <summary>
-        /// 八卦名(Ex: 泰)
+        /// 六十四卦名(Ex: 泰)
         /// </summary>
         public string name { get; set; }
         /// <summary>
-        /// 八卦字(Ex: ☰☷ )
+        /// 六十四卦字(Ex: ☰☷ )
         /// </summary>
         public string word { get; set; }
         /// <summary>
-        /// 八卦碼(Ex: 111000)
+        /// 六十四卦碼(Ex: 111000)
         /// </summary>
         public string code { get; set; }
+        /// <summary>
+        /// 六爻資訊
+        /// </summary>
+        public List<SixLine> sixline {get; set;}
+        /// <summary>
+        /// 六十四卦說明
+        /// </summary>
+        public string description { get; set; }
+    } 
+    #endregion
+
+    #region 六爻資訊
+    class SixLine
+    {
+        /// <summary>
+        /// 爻位
+        /// </summary>
+        public int position { get; set; }
+        /// <summary>
+        /// 天干
+        /// </summary>
+        public string heavenly { get; set; }
+        /// <summary>
+        /// 地支
+        /// </summary>
+        public string earthly { get; set; }
+        /// <summary>
+        /// 六親
+        /// </summary>
+        public string relation { get; set; }
+        /// <summary>
+        /// 爻辭
+        /// </summary>
+        public string description { get; set; }
     } 
     #endregion
 }
