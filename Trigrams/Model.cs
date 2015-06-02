@@ -79,6 +79,10 @@ namespace Trigrams
         /// </summary>
         public string code { get; set; }
         /// <summary>
+        /// 宮位(Ex:乾宮)
+        /// </summary>
+        public string house { get; set; }
+        /// <summary>
         /// 六爻資訊
         /// </summary>
         public List<SixLine> sixline {get; set;}
@@ -92,6 +96,10 @@ namespace Trigrams
     #region 六爻資訊
     class SixLine
     {
+        /// <summary>
+        /// 六十四卦全名
+        /// </summary>
+        public string allname { get; set; }
         /// <summary>
         /// 爻位
         /// </summary>
@@ -108,6 +116,10 @@ namespace Trigrams
         /// 六親
         /// </summary>
         public string relation { get; set; }
+        /// <summary>
+        /// 世應關係
+        /// </summary>
+        public string self { get; set; }
         /// <summary>
         /// 爻辭
         /// </summary>

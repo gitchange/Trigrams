@@ -1,0 +1,110 @@
+﻿[
+  {
+    "allname": "乾為天",
+    "position": 6,
+    "heavenly": "壬",
+    "earthly": "戌",
+    "relation": "父",
+    "self": "世",
+    "description": "亢龍有悔，盈不可久也。"
+  },
+  {
+    "allname": "乾為天",
+    "position": 5,
+    "heavenly": "壬",
+    "earthly": "申",
+    "relation": "兄",
+    "self": "",
+    "description": "飛龍在天，大人造也。"
+  },
+  {
+    "allname": "乾為天",
+    "position": 4,
+    "heavenly": "壬",
+    "earthly": "午",
+    "relation": "官",
+    "self": "",
+    "description": "或躍在淵，進無咎也。"
+  },
+  {
+    "allname": "乾為天",
+    "position": 3,
+    "heavenly": "甲",
+    "earthly": "辰",
+    "relation": "父",
+    "self": "應",
+    "description": "終日乾乾，反復道也。"
+  },
+  {
+    "allname": "乾為天",
+    "position": 2,
+    "heavenly": "甲",
+    "earthly": "寅",
+    "relation": "財",
+    "self": "",
+    "description": "見龍在田，得施普也。"
+  },
+  {
+    "allname": "乾為天",
+    "position": 1,
+    "heavenly": "甲",
+    "earthly": "子",
+    "relation": "子",
+    "self": "",
+    "description": "潛龍勿用，陽在下也。"
+  },
+  {
+    "allname": "坤為地",
+    "position": 6,
+    "heavenly": "癸",
+    "earthly": "酉",
+    "relation": "子",
+    "self": "世",
+    "description": ""
+  },
+  {
+    "allname": "坤為地",
+    "position": 5,
+    "heavenly": "癸",
+    "earthly": "亥",
+    "relation": "財",
+    "self": "",
+    "description": ""
+  },
+  {
+    "allname": "坤為地",
+    "position": 4,
+    "heavenly": "癸",
+    "earthly": "丑",
+    "relation": "兄",
+    "self": "",
+    "description": ""
+  },
+  {
+    "allname": "坤為地",
+    "position": 3,
+    "heavenly": "乙",
+    "earthly": "卯",
+    "relation": "官",
+    "self": "應",
+    "description": ""
+  },
+  {
+    "allname": "坤為地",
+    "position": 2,
+    "heavenly": "乙",
+    "earthly": "巳",
+    "relation": "父",
+    "self": "",
+    "description": ""
+  },
+  {
+    "allname": "坤為地",
+    "position": 1,
+    "heavenly": "乙",
+    "earthly": "未",
+    "relation": "兄",
+    "self": "",
+    "description": ""
+  }
+]
