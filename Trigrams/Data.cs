@@ -5,8 +5,8 @@ namespace Trigrams
 {
     static partial class Program
     {
-        public static List<Trigrams8> trigrams8 = new List<Trigrams8>();
-        public static List<Trigrams64> trigrams64 = new List<Trigrams64>();
+        //public static List<Trigrams8> trigrams8 = new List<Trigrams8>();
+        //public static List<Trigrams64> trigrams64 = new List<Trigrams64>();
 
         /// <summary>
         /// 讀取 JSON 檔案

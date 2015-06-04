@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
@@ -20,6 +21,7 @@ namespace Trigrams
         private void Form1_Load(object sender, EventArgs e)
         {
             //Trigrams.Program.InitData();
+            textBox2.Text = DateTime.Now.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -79,13 +81,50 @@ namespace Trigrams
         {
             string code = string.Join(null, cbxSL1.Text.Substring(0, 1), cbxSL2.Text.Substring(0, 1), cbxSL3.Text.Substring(0, 1), cbxSL4.Text.Substring(0, 1), cbxSL5.Text.Substring(0, 1), cbxSL6.Text.Substring(0, 1));
             Arrange op = new Arrange();
-            textBox2.Text = code;
-            List<Trigrams64> list = op.get64Gua(code);
-            foreach (var tt in list)
-            {
-                textBox1.Text += tt.name + tt.code + tt.description + "\r\n";
-            }
+            List<Trigrams64> list;
+            textBox1.Text = string.Empty;
+            //textBox2.Text = code;
+            list = op.get64Gua(0, code);
 
+            textBox1.Text += list[0].name + list[0].code + list[0].description + "\r\n";
+            lblOriginal.Text = list[0].allname;
+            lblDown.Text = list[0].word.Substring(0, 1);
+            lblUp.Text = list[0].word.Substring(1, 1);
+
+            list = op.get64Gua(1, code);
+            textBox1.Text += list[0].name + list[0].code + list[0].description + "\r\n";
+            lblChange.Text = list[0].allname;
+            lblDownChange.Text = list[0].word.Substring(0, 1);
+            lblUpChange.Text = list[0].word.Substring(1, 1);
+
+            lblOriginal.Visible = false;
+            lblDown.Visible = false;
+            lblUp.Visible= false;
+            lblChange.Visible = false;
+            lblDownChange.Visible = false;
+            lblUpChange.Visible = false;
+
+            TaiwanLunisolarCalendar Tlc = new TaiwanLunisolarCalendar();
+            
+            DateTime dt = Convert.ToDateTime(textBox2.Text.Trim());
+            EcanChineseCalendar c = new EcanChineseCalendar(dt);
+            StringBuilder dayInfo = new StringBuilder();
+            dayInfo.Append("陽歷：" + c.DateString + "\r\n");//陽歷日期
+            dayInfo.Append("農歷：" + c.ChineseDateString + "\r\n");//農歷日期
+            dayInfo.Append("星期：" + c.WeekDayStr);//星期
+            dayInfo.Append("時辰：" + c.ChineseHour + "\r\n");//時辰
+            dayInfo.Append("屬相：" + c.AnimalString + "\r\n");//屬相
+            dayInfo.Append("節氣：" + c.ChineseTwentyFourDay + "\r\n");//節氣
+            dayInfo.Append("前一個節氣：" + c.ChineseTwentyFourPrevDay + "\r\n");//前一個節氣
+            dayInfo.Append("下一個節氣：" + c.ChineseTwentyFourNextDay + "\r\n");//下一個節氣
+            dayInfo.Append("目前所在的節氣：" + c.Chinese24DaysCurrentName + "\r\n");
+            dayInfo.Append("目前所在的節氣時間：" + c.Chinese24DaysDateTime.ToString() + "\r\n");
+            dayInfo.Append("節日：" + c.DateHoliday + "\r\n");//節日
+            dayInfo.Append("干支：" + c.GanZhiDateString + "\r\n");//干支
+            dayInfo.Append("正確的干支：" + c.GanZhiYearWord + "\r\n");//正確的干支            
+            dayInfo.Append("星宿：" + c.ChineseConstellation + "\r\n");//星宿
+            dayInfo.Append("星座：" + c.Constellation + "\r\n");//星座
+            textBox3.Text = dayInfo.ToString();
         }
     }
 }
