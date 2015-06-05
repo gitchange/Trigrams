@@ -16,7 +16,7 @@ namespace Trigrams
         {
             string json = string.Empty;            
             using (StreamReader r = new StreamReader(filename))
-            {
+            {                
                 json = r.ReadToEnd();
             }
             return json;
