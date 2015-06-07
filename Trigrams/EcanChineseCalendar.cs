@@ -1035,14 +1035,35 @@ new WeekHolidayStruct(11, 4, 5, "感恩節")
             get
             {
                 bool isoveryearspring = true;
+                SolarTerm solar = new SolarTerm();
                 //每年的立春約在 2/4 ~ 2/6 期間
-                DateTime springDateTime = Get24DaysDateTime(Convert.ToDateTime(this._date.Year.ToString() + "/02/08")); //求當年度立春時間
+                DateTime springDateTime = solar.Get24DaysDateTime(Convert.ToDateTime(this._date.Year.ToString() + "/02/08")); //求當年度立春時間
                 if (this._datetime >= springDateTime)
                     isoveryearspring = true;
                 else
                     isoveryearspring = false;
 
                 return isoveryearspring;
+            }
+        }
+        #endregion
+        #region IsOverMonthBy24 (判斷傳入日期是否過了當月的節氣)
+        /// <summary>
+        /// 判斷傳入日期是否過了當月的節氣
+        /// </summary>
+        public bool IsOverMonthBy24
+        {
+            get
+            {
+                bool isovermonth = true;
+                SolarTerm solar = new SolarTerm();
+                DateTime current24DateTime = solar.Get24DaysDateTime(this._datetime); //求目前所在時間的節氣時間
+                if (this._datetime.Month == current24DateTime.Month)
+                    isovermonth = true;
+                else
+                    isovermonth = false;
+
+                return isovermonth;
             }
         }
         #endregion
@@ -1342,11 +1363,11 @@ new WeekHolidayStruct(11, 4, 5, "感恩節")
             }
         }
         #endregion
-        #region GanZhiYearWord (取年的干支，以二十四節氣看)
+        #region GanZhiYearBy24 (取年的干支，以二十四節氣看)
         /// <summary>
         /// 取年的干支 (By 二十四節氣看) 表示法如 乙丑年
         /// </summary>
-        public string GanZhiYearWord
+        public string GanZhiYearBy24
         {
             get
             {
@@ -1355,8 +1376,83 @@ new WeekHolidayStruct(11, 4, 5, "感恩節")
                 if (!this.IsOverYearSpring) y -= 1;
 
                 int i = (y - GanZhiStartYear) % 60; //計算干支
-                tempStr = ganStr[i % 10].ToString() + zhiStr[i % 12].ToString() + "年";
+                tempStr = ganStr[i % 10].ToString() + zhiStr[i % 12].ToString();
                 return tempStr;
+            }
+        }
+        #endregion
+        #region GanZhiMonthBy24 (取年的干支，以二十四節氣看)
+        /// <summary>
+        /// 取月的干支 (By 二十四節氣看) 表示法如 乙丑月
+        /// </summary>
+        public string GanZhiMonthBy24
+        {
+            get
+            {
+                //每個月的地支總是固定的,而且總是從寅月開始
+                int zhiIndex;
+                string zhi;
+                int i = (this._date.Year - GanZhiStartYear) % 60; //計算干支
+                int mon = this._date.Month;
+                if (!IsOverMonthBy24)  //判斷是否為當月的節氣
+                {
+                    mon = this._date.Month - 1;
+                    if (mon==0)
+                    {
+                        mon = 12;
+                        i = (this._date.Year - 1 - GanZhiStartYear) % 60; //重新計算干支
+                    }                    
+                }
+                if (mon == 12)
+                {
+                    zhiIndex = 0;
+                }
+                else
+                {
+                    zhiIndex = mon;
+                }
+                zhi = zhiStr[zhiIndex].ToString();
+                //根據當年的干支年的干來計算月干的第一個
+                int ganIndex = 1;
+                string gan;    
+                int yy = (i%10);
+                switch (i % 10)
+                {
+                    #region ...
+                    case 0: //甲
+                        ganIndex = 3;
+                        break;
+                    case 1: //乙
+                        ganIndex = 5;
+                        break;
+                    case 2: //丙
+                        ganIndex = 7;
+                        break;
+                    case 3: //丁
+                        ganIndex = 9;
+                        break;
+                    case 4: //戊
+                        ganIndex = 1;
+                        break;
+                    case 5: //己
+                        ganIndex = 3;
+                        break;
+                    case 6: //庚
+                        ganIndex = 5;
+                        break;
+                    case 7: //辛
+                        ganIndex = 7;
+                        break;
+                    case 8: //壬
+                        ganIndex = 9;
+                        break;
+                    case 9: //癸
+                        ganIndex = 1;
+                        break;
+                    #endregion
+                }
+                gan = ganStr[(ganIndex + mon - 3) % 10].ToString();
+                return gan + zhi ;
             }
         }
         #endregion
