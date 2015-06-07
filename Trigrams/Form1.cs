@@ -109,6 +109,8 @@ namespace Trigrams
             DateTime dt = Convert.ToDateTime(textBox2.Text.Trim());
             EcanChineseCalendar c = new EcanChineseCalendar(dt);
             StringBuilder dayInfo = new StringBuilder();
+            SolarTerm solar = new SolarTerm();
+            
             dayInfo.Append("陽歷：" + c.DateString + "\r\n");//陽歷日期
             dayInfo.Append("農歷：" + c.ChineseDateString + "\r\n");//農歷日期
             dayInfo.Append("星期：" + c.WeekDayStr);//星期
@@ -119,6 +121,8 @@ namespace Trigrams
             dayInfo.Append("下一個節氣：" + c.ChineseTwentyFourNextDay + "\r\n");//下一個節氣
             dayInfo.Append("目前所在的節氣：" + c.Chinese24DaysCurrentName + "\r\n");
             dayInfo.Append("目前所在的節氣時間：" + c.Chinese24DaysDateTime.ToString() + "\r\n");
+            dayInfo.Append("Solar目前所在的節氣：" + solar.Get24DaysCurrentName(dt) + "\r\n");
+            dayInfo.Append("Solar目前所在的節氣時間：" + solar.Get24DaysDateTime(dt).ToString() + "\r\n");
             dayInfo.Append("節日：" + c.DateHoliday + "\r\n");//節日
             dayInfo.Append("干支：" + c.GanZhiDateString + "\r\n");//干支
             dayInfo.Append("正確的干支：" + c.GanZhiYearWord + "\r\n");//正確的干支            

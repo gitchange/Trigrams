@@ -7,6 +7,7 @@ namespace Trigrams
 {
     public class SolarTerm
     {
+        #region SolarTerm Base Code
         // ========角度變換===============
         private static double rad = 180 * 3600 / Math.PI; // 每弧度的角秒數
         private static double RAD = 180 / Math.PI; // 每弧度的角度數
@@ -615,7 +616,9 @@ namespace Trigrams
         public static string[] jqB = { //節氣表
    "春分","清明","穀雨","立夏","小滿","芒種","夏至","小暑","大暑","立秋","處暑","白露",
    "秋分","寒露","霜降","立冬","小雪","大雪","冬至","小寒","大寒","立春","雨水","驚蟄"};
+        #endregion
 
+        #region Sample Call
         public void JQtest(int y)
         { // 節氣使計算範例,y是年分,這是個測試函數
             double jd = 365.2422 * (y - 2000), q;
@@ -744,5 +747,123 @@ namespace Trigrams
 
             Console.WriteLine(outtext);
         }
+        #endregion
+
+        #region My Extendation
+        #region Get24DaysDateTime (取得目前所在節氣的時間點)
+        /// <summary>
+        /// 取得目前所在節氣的時間點
+        /// </summary>
+        /// <param name="pdatetime">傳入計算日期</param>
+        /// <returns></returns>
+        public DateTime Get24DaysDateTime(DateTime pdatetime)
+        {
+            int year;
+            double jd, q;
+            DateTime dt24 = Convert.ToDateTime(toStr()); ;
+            //從前一年的冬至開始檢查
+            year = pdatetime.Year - 1;
+            jd = 365.2422 * (year - 2000);
+            for (int i = 18; i < 24; i++)
+            {
+                q = jiaoCal(jd + i * 15.2, i * 15, 0);
+                q = q + J2000 + (double)8 / 24;
+                setFromJD(q, true);
+                dt24 = Convert.ToDateTime(toStr()); // 將儒略日轉成世界時
+                if (dt24 >= pdatetime)
+                {
+                    i -= 1;  //重新取得前一個節氣時間
+                    q = jiaoCal(jd + i * 15.2, i * 15, 0);
+                    q = q + J2000 + (double)8 / 24;
+                    setFromJD(q, true);
+                    dt24 = Convert.ToDateTime(toStr()); // 將儒略日轉成世界時
+                    return dt24;
+                }
+                //jqB[i]
+            }
+            //從本年的春分開始檢查
+            year = pdatetime.Year;
+            jd = 365.2422 * (year - 2000);
+            for (int i = 0; i < 18; i++)
+            {
+                q = jiaoCal(jd + i * 15.2, i * 15, 0);
+                q = q + J2000 + (double)8 / 24;
+                setFromJD(q, true);
+                dt24 = Convert.ToDateTime(toStr()); // 將儒略日轉成世界時
+                if (dt24 >= pdatetime)
+                {
+                    if (i == 0)   //如果春分就比傳入日期大，表示是節氣是 驚蟄
+                    {
+                        i = 23;   //直接取節氣為 驚蟄
+                        year = pdatetime.Year - 1;                        
+                    }
+                    else
+                    {
+                        i -= 1;  //重新取得前一個節氣時間
+                    }
+                    jd = 365.2422 * (year - 2000);
+                    q = jiaoCal(jd + i * 15.2, i * 15, 0);
+                    q = q + J2000 + (double)8 / 24;
+                    setFromJD(q, true);
+                    dt24 = Convert.ToDateTime(toStr()); // 將儒略日轉成世界時
+                    break;
+                }
+            }
+            return dt24;
+        }
+        #endregion
+        #region Get24DaysCurrentName (取得目前所在節氣的時間點)
+        /// <summary>
+        /// 取得目前所在節氣的時間點
+        /// </summary>
+        /// <param name="pdatetime">傳入計算日期</param>
+        /// <returns></returns>
+        public string Get24DaysCurrentName(DateTime pdatetime)
+        {
+            int year;
+            double jd, q;
+            DateTime dt24 = Convert.ToDateTime(toStr()); ;
+            //從前一年的冬至開始檢查
+            year = pdatetime.Year - 1;
+            jd = 365.2422 * (year - 2000);
+            for (int i = 18; i < 24; i++)
+            {
+                q = jiaoCal(jd + i * 15.2, i * 15, 0);
+                q = q + J2000 + (double)8 / 24;
+                setFromJD(q, true);
+                dt24 = Convert.ToDateTime(toStr()); // 將儒略日轉成世界時
+                if (dt24 >= pdatetime)
+                {
+                    i -= 1;  //重新取得前一個節氣時間
+                    return jqB[i];
+                }
+            }
+            //從本年的春分開始檢查
+            year = pdatetime.Year;
+            jd = 365.2422 * (year - 2000);
+            int c = 0;
+            for (int i = 0; i < 18; i++)
+            {
+                q = jiaoCal(jd + i * 15.2, i * 15, 0);
+                q = q + J2000 + (double)8 / 24;
+                setFromJD(q, true);
+                dt24 = Convert.ToDateTime(toStr()); // 將儒略日轉成世界時
+                if (dt24 >= pdatetime)
+                {
+                    if (i == 0)   //如果春分就比傳入日期大，表示是節氣是 驚蟄
+                    {
+                        c = 23;   //直接取節氣為 驚蟄
+                    }
+                    else
+                    {
+                        c = i - 1;  //重新取得前一個節氣時間
+                    }
+                    break;
+                }
+            }
+            return jqB[c];
+        }
+        #endregion
+        #endregion
     }
 }

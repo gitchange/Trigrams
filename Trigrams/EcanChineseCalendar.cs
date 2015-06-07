@@ -484,7 +484,7 @@ new WeekHolidayStruct(11, 4, 5, "感恩節")
         {
             int _hour, _minute, offset, i;
             int indexGan;
-            string ganHour, zhiHour;
+            //string ganHour, zhiHour;
             string tmpGan;
             //計算時辰的地支
             _hour = dt.Hour; //獲得當前時間小時
