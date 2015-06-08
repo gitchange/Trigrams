@@ -236,31 +236,23 @@ namespace Trigrams
         /// <returns></returns>
         public string setupGuaSelf(string pcode)
         {
-            GanZhitoNum dict = new GanZhitoNum();
-            Dictionary<string, int> dizhidict = dict.DiZhitoNum();
             string result = string.Empty;
-            char[] guadizhi = setupDiZhi(pcode).ToCharArray();
-            List<int> pos = new List<int>();
-            foreach (char c in guadizhi)
-            {
-                pos.Add(dizhidict[c.ToString()]);
-            }
             //天同二世
-            if (pos[3 - 1] % 2 == pos[6 - 1] % 2 && pos[2 - 1] % 2 != pos[5 - 1] % 2 && pos[1 - 1] % 2 != pos[4 - 1] % 2) result = "　世　　應　";
+            if (pcode[3 - 1] == pcode[6 - 1] && pcode[2 - 1] != pcode[5 - 1] && pcode[1 - 1] != pcode[4 - 1]) result = "　世　　應　";
             //天變五
-            if (pos[3 - 1] % 2 != pos[6 - 1] % 2 && pos[2 - 1] % 2 == pos[5 - 1] % 2 && pos[1 - 1] % 2 == pos[4 - 1] % 2) result = "　應　　世　";
+            if (pcode[3 - 1] != pcode[6 - 1] && pcode[2 - 1] == pcode[5 - 1] && pcode[1 - 1] == pcode[4 - 1]) result = "　應　　世　";
             //地同四世
-            if (pos[3 - 1] % 2 != pos[6 - 1] % 2 && pos[2 - 1] % 2 != pos[5 - 1] % 2 && pos[1 - 1] % 2 == pos[4 - 1] % 2) result = "應　　世　　";
+            if (pcode[3 - 1] != pcode[6 - 1] && pcode[2 - 1] != pcode[5 - 1] && pcode[1 - 1] == pcode[4 - 1]) result = "應　　世　　";
             //地變初
-            if (pos[3 - 1] % 2 == pos[6 - 1] % 2 && pos[2 - 1] % 2 == pos[5 - 1] % 2 && pos[1 - 1] % 2 != pos[4 - 1] % 2) result = "世　　應　　";
+            if (pcode[3 - 1] == pcode[6 - 1] && pcode[2 - 1] == pcode[5 - 1] && pcode[1 - 1] != pcode[4 - 1]) result = "世　　應　　";
             //本宮六世
-            if (pos[3 - 1] % 2 == pos[6 - 1] % 2 && pos[2 - 1] % 2 == pos[5 - 1] % 2 && pos[1 - 1] % 2 == pos[4 - 1] % 2) result = "　　應　　世";
+            if (pcode[3 - 1] == pcode[6 - 1] && pcode[2 - 1] == pcode[5 - 1] && pcode[1 - 1] == pcode[4 - 1]) result = "　　應　　世";
             //三世異
-            if (pos[3 - 1] % 2 != pos[6 - 1] % 2 && pos[2 - 1] % 2 != pos[5 - 1] % 2 && pos[1 - 1] % 2 != pos[4 - 1] % 2) result = "　　世　　應";
+            if (pcode[3 - 1] != pcode[6 - 1] && pcode[2 - 1] != pcode[5 - 1] && pcode[1 - 1] != pcode[4 - 1]) result = "　　世　　應";
             //人同遊魂
-            if (pos[3 - 1] % 2 != pos[6 - 1] % 2 && pos[2 - 1] % 2 == pos[5 - 1] % 2 && pos[1 - 1] % 2 != pos[4 - 1] % 2) result = "應　　世　　";
+            if (pcode[3 - 1] != pcode[6 - 1] && pcode[2 - 1] == pcode[5 - 1] && pcode[1 - 1] != pcode[4 - 1]) result = "應　　世　　";
             //人變歸
-            if (pos[3 - 1] % 2 == pos[6 - 1] % 2 && pos[2 - 1] % 2 != pos[5 - 1] % 2 && pos[1 - 1] % 2 == pos[4 - 1] % 2) result = "世　　應　　";
+            if (pcode[3 - 1] == pcode[6 - 1] && pcode[2 - 1] != pcode[5 - 1] && pcode[1 - 1] == pcode[4 - 1]) result = "世　　應　　";
             return result;
         }
     }
@@ -309,6 +301,6 @@ namespace Trigrams
         {
             return this.dictDiZhi;
         }
-    } 
+    }
     #endregion
 }
