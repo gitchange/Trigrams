@@ -16,11 +16,11 @@ namespace Trigrams
         /// <summary>
         /// 放置本卦 Code
         /// </summary>
-        protected static string originalGuaCode { get; set;}
+        protected static string originalGuaCode { get; set; }
         /// <summary>
         /// 放置變卦 Code
         /// </summary>
-        protected static string changeGuaCode { get; set;}
+        protected static string changeGuaCode { get; set; }
         public Form1()
         {
             InitializeComponent();
@@ -31,17 +31,17 @@ namespace Trigrams
             //Trigrams.Program.InitData();
             initionalData();
             DateTime dtp = dateTimePicker1.Value;
-            textBox2.Text = dtp.Year.ToString()+"/"+dtp.Month.ToString()+"/"+dtp.Day.ToString() + " " + cbxHour.Text + ":" + cbxMin.Text + ":00";
+            textBox2.Text = dtp.Year.ToString() + "/" + dtp.Month.ToString() + "/" + dtp.Day.ToString() + " " + cbxHour.Text + ":" + cbxMin.Text + ":00";
             //textBox2.Text = DateTime.Now.ToString();
         }
 
         private void initionalData()
         {
-            for (int i = 0 ; i < 24 ; i++)
+            for (int i = 0; i < 24; i++)
             {
-                cbxHour.Items.Add(i.ToString().PadLeft(2,'0'));
+                cbxHour.Items.Add(i.ToString().PadLeft(2, '0'));
             }
-            for (int j=0 ; j<60 ; j++)
+            for (int j = 0; j < 60; j++)
             {
                 cbxMin.Items.Add(j.ToString().PadLeft(2, '0'));
             }
@@ -73,29 +73,69 @@ namespace Trigrams
             lblChange.Text = list[0].allname;
             lblDownChange.Text = list[0].word.Substring(0, 1);
             lblUpChange.Text = list[0].word.Substring(1, 1);
+
+            string showchange = "　　×○";
+            lblc91.Text = showchange[Convert.ToInt16(cbxSL1.Text.Substring(0, 1))].ToString();
+            lblc92.Text = showchange[Convert.ToInt16(cbxSL2.Text.Substring(0, 1))].ToString();
+            lblc93.Text = showchange[Convert.ToInt16(cbxSL3.Text.Substring(0, 1))].ToString();
+            lblc94.Text = showchange[Convert.ToInt16(cbxSL4.Text.Substring(0, 1))].ToString();
+            lblc95.Text = showchange[Convert.ToInt16(cbxSL5.Text.Substring(0, 1))].ToString();
+            lblc96.Text = showchange[Convert.ToInt16(cbxSL6.Text.Substring(0, 1))].ToString();
+        }
+        #endregion
+
+        #region 秀六十四卦的天干地支
+        /// <summary>
+        /// 秀六十四卦的天干地支
+        /// </summary>
+        private void showGuaGanZhi()
+        {
+            string GuaGanZhi = string.Empty;
+            Arrange op = new Arrange();
+            GuaGanZhi = op.setupTenGan(originalGuaCode);
+            lbl091.Text = GuaGanZhi[0].ToString();
+            lbl092.Text = GuaGanZhi[1].ToString();
+            lbl093.Text = GuaGanZhi[2].ToString();
+            lbl094.Text = GuaGanZhi[3].ToString();
+            lbl095.Text = GuaGanZhi[4].ToString();
+            lbl096.Text = GuaGanZhi[5].ToString();
+            GuaGanZhi = op.setupDiZhi(originalGuaCode);
+            lbl091.Text += GuaGanZhi[0].ToString();
+            lbl092.Text += GuaGanZhi[1].ToString();
+            lbl093.Text += GuaGanZhi[2].ToString();
+            lbl094.Text += GuaGanZhi[3].ToString();
+            lbl095.Text += GuaGanZhi[4].ToString();
+            lbl096.Text += GuaGanZhi[5].ToString();
+            GuaGanZhi = op.setupTenGan(changeGuaCode);
+            lbl191.Text = GuaGanZhi[0].ToString();
+            lbl192.Text = GuaGanZhi[1].ToString();
+            lbl193.Text = GuaGanZhi[2].ToString();
+            lbl194.Text = GuaGanZhi[3].ToString();
+            lbl195.Text = GuaGanZhi[4].ToString();
+            lbl196.Text = GuaGanZhi[5].ToString();
+            GuaGanZhi = op.setupDiZhi(changeGuaCode);
+            lbl191.Text += GuaGanZhi[0].ToString();
+            lbl192.Text += GuaGanZhi[1].ToString();
+            lbl193.Text += GuaGanZhi[2].ToString();
+            lbl194.Text += GuaGanZhi[3].ToString();
+            lbl195.Text += GuaGanZhi[4].ToString();
+            lbl196.Text += GuaGanZhi[5].ToString();
+            
         } 
         #endregion
-        
-        private void showGanZhi()
+
+        private void showSelf()
         {
-            string oriGuaGanZhi = string.Empty;
-            string chgGuaGanZhi = string.Empty;
             Arrange op = new Arrange();
-            oriGuaGanZhi = op.setupTenGan(originalGuaCode);
-            lbl091.Text = oriGuaGanZhi[0].ToString();
-            lbl092.Text = oriGuaGanZhi[1].ToString();
-            lbl093.Text = oriGuaGanZhi[2].ToString();
-            lbl094.Text = oriGuaGanZhi[3].ToString();
-            lbl095.Text = oriGuaGanZhi[4].ToString();
-            lbl096.Text = oriGuaGanZhi[5].ToString();
-            oriGuaGanZhi = op.setupDiZhi(originalGuaCode);
-            lbl091.Text += oriGuaGanZhi[0].ToString();
-            lbl092.Text += oriGuaGanZhi[1].ToString();
-            lbl093.Text += oriGuaGanZhi[2].ToString();
-            lbl094.Text += oriGuaGanZhi[3].ToString();
-            lbl095.Text += oriGuaGanZhi[4].ToString();
-            lbl096.Text += oriGuaGanZhi[5].ToString();
+            string self = op.setupGuaSelf(originalGuaCode);
+            lbls091.Text = self[0].ToString();
+            lbls092.Text = self[1].ToString();
+            lbls093.Text = self[2].ToString();
+            lbls094.Text = self[3].ToString();
+            lbls095.Text = self[4].ToString();
+            lbls096.Text = self[5].ToString();
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -153,7 +193,8 @@ namespace Trigrams
         private void btnStart_Click(object sender, EventArgs e)
         {
             show64Gua();
-            showGanZhi();
+            showGuaGanZhi();
+            showSelf();
             panel1.Visible = false;
             //lblOriginal.Visible = false;
             //lblDown.Visible = false;
@@ -171,7 +212,7 @@ namespace Trigrams
             EcanChineseCalendar c = new EcanChineseCalendar(dt);
             StringBuilder dayInfo = new StringBuilder();
             SolarTerm solar = new SolarTerm();
-            
+
             dayInfo.Append("陽歷：" + c.DateString + "\r\n");//陽歷日期
             dayInfo.Append("農歷：" + c.ChineseDateString + "\r\n");//農歷日期
             dayInfo.Append("星期：" + c.WeekDayStr);//星期

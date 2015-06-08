@@ -115,7 +115,7 @@ namespace Trigrams
                     break;
             }
             //後判斷外卦
-            switch (insidecode)
+            switch (outsidecode)
             {
                 case "111": //乾
                     outside = "壬壬壬";
@@ -194,7 +194,7 @@ namespace Trigrams
                     break;
             }
             //後判斷外卦
-            switch (insidecode)
+            switch (outsidecode)
             {
                 case "111": //乾
                     outside = "午申戌";
@@ -225,5 +225,90 @@ namespace Trigrams
         }
         #endregion
 
+        /// <summary>
+        /// 為六十四卦裝世應
+        /// 天同二世天變五, 
+        /// 地同四世地變初, 
+        /// 本宮六世三世異, 
+        /// 人同遊魂人變歸.
+        /// </summary>
+        /// <param name="pcode"></param>
+        /// <returns></returns>
+        public string setupGuaSelf(string pcode)
+        {
+            GanZhitoNum dict = new GanZhitoNum();
+            Dictionary<string, int> dizhidict = dict.DiZhitoNum();
+            string result = string.Empty;
+            char[] guadizhi = setupDiZhi(pcode).ToCharArray();
+            List<int> pos = new List<int>();
+            foreach (char c in guadizhi)
+            {
+                pos.Add(dizhidict[c.ToString()]);
+            }
+            //天同二世
+            if (pos[3 - 1] % 2 == pos[6 - 1] % 2 && pos[2 - 1] % 2 != pos[5 - 1] % 2 && pos[1 - 1] % 2 != pos[4 - 1] % 2) result = "　世　　應　";
+            //天變五
+            if (pos[3 - 1] % 2 != pos[6 - 1] % 2 && pos[2 - 1] % 2 == pos[5 - 1] % 2 && pos[1 - 1] % 2 == pos[4 - 1] % 2) result = "　應　　世　";
+            //地同四世
+            if (pos[3 - 1] % 2 != pos[6 - 1] % 2 && pos[2 - 1] % 2 != pos[5 - 1] % 2 && pos[1 - 1] % 2 == pos[4 - 1] % 2) result = "應　　世　　";
+            //地變初
+            if (pos[3 - 1] % 2 == pos[6 - 1] % 2 && pos[2 - 1] % 2 == pos[5 - 1] % 2 && pos[1 - 1] % 2 != pos[4 - 1] % 2) result = "世　　應　　";
+            //本宮六世
+            if (pos[3 - 1] % 2 == pos[6 - 1] % 2 && pos[2 - 1] % 2 == pos[5 - 1] % 2 && pos[1 - 1] % 2 == pos[4 - 1] % 2) result = "　　應　　世";
+            //三世異
+            if (pos[3 - 1] % 2 != pos[6 - 1] % 2 && pos[2 - 1] % 2 != pos[5 - 1] % 2 && pos[1 - 1] % 2 != pos[4 - 1] % 2) result = "　　世　　應";
+            //人同遊魂
+            if (pos[3 - 1] % 2 != pos[6 - 1] % 2 && pos[2 - 1] % 2 == pos[5 - 1] % 2 && pos[1 - 1] % 2 != pos[4 - 1] % 2) result = "應　　世　　";
+            //人變歸
+            if (pos[3 - 1] % 2 == pos[6 - 1] % 2 && pos[2 - 1] % 2 != pos[5 - 1] % 2 && pos[1 - 1] % 2 == pos[4 - 1] % 2) result = "世　　應　　";
+            return result;
+        }
     }
+
+    #region 干支字元轉換為數字字典類別
+    /// <summary>
+    /// 干支字元轉換為數字字典類別
+    /// </summary>
+    class GanZhitoNum
+    {
+        Dictionary<string, int> dictTenGan;
+        Dictionary<string, int> dictDiZhi;
+        public GanZhitoNum()
+        {
+            dictTenGan = new Dictionary<string, int>();
+            dictTenGan.Add("甲", 1);
+            dictTenGan.Add("乙", 2);
+            dictTenGan.Add("丙", 3);
+            dictTenGan.Add("丁", 4);
+            dictTenGan.Add("戊", 5);
+            dictTenGan.Add("己", 6);
+            dictTenGan.Add("庚", 7);
+            dictTenGan.Add("辛", 8);
+            dictTenGan.Add("壬", 9);
+            dictTenGan.Add("癸", 10);
+            dictDiZhi = new Dictionary<string, int>();
+            dictDiZhi.Add("子", 1);
+            dictDiZhi.Add("丑", 2);
+            dictDiZhi.Add("寅", 3);
+            dictDiZhi.Add("卯", 4);
+            dictDiZhi.Add("辰", 5);
+            dictDiZhi.Add("巳", 6);
+            dictDiZhi.Add("午", 7);
+            dictDiZhi.Add("未", 8);
+            dictDiZhi.Add("申", 9);
+            dictDiZhi.Add("酉", 10);
+            dictDiZhi.Add("戌", 11);
+            dictDiZhi.Add("亥", 12);
+        }
+
+        public Dictionary<string, int> TenGantoNum()
+        {
+            return this.dictTenGan;
+        }
+        public Dictionary<string, int> DiZhitoNum()
+        {
+            return this.dictDiZhi;
+        }
+    } 
+    #endregion
 }
