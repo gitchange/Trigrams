@@ -115,12 +115,13 @@ namespace Trigrams
             lblDownChange.Text = list[0].word.Substring(0, 1);
             lblUpChange.Text = list[0].word.Substring(1, 1);
 
-            lblOriginal.Visible = false;
-            lblDown.Visible = false;
-            lblUp.Visible= false;
-            lblChange.Visible = false;
-            lblDownChange.Visible = false;
-            lblUpChange.Visible = false;
+            panel1.Visible = false;
+            //lblOriginal.Visible = false;
+            //lblDown.Visible = false;
+            //lblUp.Visible= false;
+            //lblChange.Visible = false;
+            //lblDownChange.Visible = false;
+            //lblUpChange.Visible = false;
 
             TaiwanLunisolarCalendar Tlc = new TaiwanLunisolarCalendar();
 

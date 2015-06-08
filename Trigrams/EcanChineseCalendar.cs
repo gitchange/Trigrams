@@ -155,7 +155,6 @@ namespace Trigrams
         #region 農歷相關數據
         private static string ganStr = "甲乙丙丁戊己庚辛壬癸";
         private static string zhiStr = "子丑寅卯辰巳午未申酉戌亥";
-        private static string dizhiHourStr = "子丑丑寅寅卯卯辰辰巳巳午午未未申申酉酉戌戌亥亥子";
         private static string animalStr = "鼠牛虎兔龍蛇馬羊猴雞狗豬";
         private static string nStr1 = "日一二三四五六七八九";
         private static string nStr2 = "初十廿卅";
