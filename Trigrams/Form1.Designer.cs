@@ -56,11 +56,17 @@
             this.lblDay = new System.Windows.Forms.Label();
             this.lblHour = new System.Windows.Forms.Label();
             this.lblEmptyDie = new System.Windows.Forms.Label();
+            this.lbl096 = new System.Windows.Forms.Label();
+            this.lbl095 = new System.Windows.Forms.Label();
+            this.lbl094 = new System.Windows.Forms.Label();
+            this.lbl093 = new System.Windows.Forms.Label();
+            this.lbl092 = new System.Windows.Forms.Label();
+            this.lbl091 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(391, 145);
+            this.textBox1.Location = new System.Drawing.Point(509, 166);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -69,7 +75,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(477, 117);
+            this.button1.Location = new System.Drawing.Point(607, 131);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(64, 21);
             this.button1.TabIndex = 1;
@@ -203,7 +209,7 @@
             // 
             this.lblDownChange.AutoSize = true;
             this.lblDownChange.Font = new System.Drawing.Font("新細明體", 64F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lblDownChange.Location = new System.Drawing.Point(288, 246);
+            this.lblDownChange.Location = new System.Drawing.Point(333, 246);
             this.lblDownChange.Name = "lblDownChange";
             this.lblDownChange.Size = new System.Drawing.Size(123, 86);
             this.lblDownChange.TabIndex = 9;
@@ -213,7 +219,7 @@
             // 
             this.lblUpChange.AutoSize = true;
             this.lblUpChange.Font = new System.Drawing.Font("新細明體", 64F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lblUpChange.Location = new System.Drawing.Point(288, 159);
+            this.lblUpChange.Location = new System.Drawing.Point(333, 159);
             this.lblUpChange.Name = "lblUpChange";
             this.lblUpChange.Size = new System.Drawing.Size(123, 86);
             this.lblUpChange.TabIndex = 9;
@@ -233,7 +239,7 @@
             // 
             this.lblChange.AutoSize = true;
             this.lblChange.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lblChange.Location = new System.Drawing.Point(310, 123);
+            this.lblChange.Location = new System.Drawing.Point(355, 123);
             this.lblChange.Name = "lblChange";
             this.lblChange.Size = new System.Drawing.Size(66, 27);
             this.lblChange.TabIndex = 11;
@@ -299,9 +305,9 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(150, 116);
+            this.panel1.Location = new System.Drawing.Point(150, 123);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(235, 225);
+            this.panel1.Size = new System.Drawing.Size(306, 225);
             this.panel1.TabIndex = 16;
             // 
             // lblMonth
@@ -336,11 +342,71 @@
             this.lblEmptyDie.TabIndex = 15;
             this.lblEmptyDie.Text = "空亡：";
             // 
+            // lbl096
+            // 
+            this.lbl096.AutoSize = true;
+            this.lbl096.Location = new System.Drawing.Point(239, 166);
+            this.lbl096.Name = "lbl096";
+            this.lbl096.Size = new System.Drawing.Size(33, 12);
+            this.lbl096.TabIndex = 17;
+            this.lbl096.Text = "label3";
+            // 
+            // lbl095
+            // 
+            this.lbl095.AutoSize = true;
+            this.lbl095.Location = new System.Drawing.Point(239, 197);
+            this.lbl095.Name = "lbl095";
+            this.lbl095.Size = new System.Drawing.Size(33, 12);
+            this.lbl095.TabIndex = 17;
+            this.lbl095.Text = "label3";
+            // 
+            // lbl094
+            // 
+            this.lbl094.AutoSize = true;
+            this.lbl094.Location = new System.Drawing.Point(239, 225);
+            this.lbl094.Name = "lbl094";
+            this.lbl094.Size = new System.Drawing.Size(33, 12);
+            this.lbl094.TabIndex = 17;
+            this.lbl094.Text = "label3";
+            // 
+            // lbl093
+            // 
+            this.lbl093.AutoSize = true;
+            this.lbl093.Location = new System.Drawing.Point(239, 255);
+            this.lbl093.Name = "lbl093";
+            this.lbl093.Size = new System.Drawing.Size(33, 12);
+            this.lbl093.TabIndex = 17;
+            this.lbl093.Text = "label3";
+            // 
+            // lbl092
+            // 
+            this.lbl092.AutoSize = true;
+            this.lbl092.Location = new System.Drawing.Point(239, 284);
+            this.lbl092.Name = "lbl092";
+            this.lbl092.Size = new System.Drawing.Size(33, 12);
+            this.lbl092.TabIndex = 17;
+            this.lbl092.Text = "label3";
+            // 
+            // lbl091
+            // 
+            this.lbl091.AutoSize = true;
+            this.lbl091.Location = new System.Drawing.Point(239, 315);
+            this.lbl091.Name = "lbl091";
+            this.lbl091.Size = new System.Drawing.Size(33, 12);
+            this.lbl091.TabIndex = 17;
+            this.lbl091.Text = "label3";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(596, 565);
+            this.ClientSize = new System.Drawing.Size(716, 565);
+            this.Controls.Add(this.lbl091);
+            this.Controls.Add(this.lbl092);
+            this.Controls.Add(this.lbl093);
+            this.Controls.Add(this.lbl094);
+            this.Controls.Add(this.lbl095);
+            this.Controls.Add(this.lbl096);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblEmptyDie);
@@ -407,6 +473,12 @@
         private System.Windows.Forms.Label lblDay;
         private System.Windows.Forms.Label lblHour;
         private System.Windows.Forms.Label lblEmptyDie;
+        private System.Windows.Forms.Label lbl096;
+        private System.Windows.Forms.Label lbl095;
+        private System.Windows.Forms.Label lbl094;
+        private System.Windows.Forms.Label lbl093;
+        private System.Windows.Forms.Label lbl092;
+        private System.Windows.Forms.Label lbl091;
     }
 }
 

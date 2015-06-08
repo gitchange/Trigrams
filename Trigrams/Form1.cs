@@ -13,6 +13,14 @@ namespace Trigrams
 {
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// 放置本卦 Code
+        /// </summary>
+        protected static string originalGuaCode { get; set;}
+        /// <summary>
+        /// 放置變卦 Code
+        /// </summary>
+        protected static string changeGuaCode { get; set;}
         public Form1()
         {
             InitializeComponent();
@@ -40,6 +48,53 @@ namespace Trigrams
             dateTimePicker1.Value = DateTime.Now;
             cbxHour.Text = DateTime.Now.Hour.ToString().PadLeft(2, '0');
             cbxMin.Text = DateTime.Now.Minute.ToString().PadLeft(2, '0');
+        }
+
+        #region 秀六十四卦
+        /// <summary>
+        /// 秀六十四卦
+        /// </summary>
+        private void show64Gua()
+        {
+            string code = string.Join(null, cbxSL1.Text.Substring(0, 1), cbxSL2.Text.Substring(0, 1), cbxSL3.Text.Substring(0, 1), cbxSL4.Text.Substring(0, 1), cbxSL5.Text.Substring(0, 1), cbxSL6.Text.Substring(0, 1));
+            Arrange op = new Arrange();
+            List<Trigrams64> list;
+
+            list = op.get64Gua(0, code);
+            originalGuaCode = list[0].code;
+            textBox1.Text += list[0].name + originalGuaCode + list[0].description + "\r\n";
+            lblOriginal.Text = list[0].allname;
+            lblDown.Text = list[0].word.Substring(0, 1);
+            lblUp.Text = list[0].word.Substring(1, 1);
+
+            list = op.get64Gua(1, code);
+            changeGuaCode = list[0].code;
+            textBox1.Text += list[0].name + changeGuaCode + list[0].description + "\r\n";
+            lblChange.Text = list[0].allname;
+            lblDownChange.Text = list[0].word.Substring(0, 1);
+            lblUpChange.Text = list[0].word.Substring(1, 1);
+        } 
+        #endregion
+        
+        private void showGanZhi()
+        {
+            string oriGuaGanZhi = string.Empty;
+            string chgGuaGanZhi = string.Empty;
+            Arrange op = new Arrange();
+            oriGuaGanZhi = op.setupTenGan(originalGuaCode);
+            lbl091.Text = oriGuaGanZhi[0].ToString();
+            lbl092.Text = oriGuaGanZhi[1].ToString();
+            lbl093.Text = oriGuaGanZhi[2].ToString();
+            lbl094.Text = oriGuaGanZhi[3].ToString();
+            lbl095.Text = oriGuaGanZhi[4].ToString();
+            lbl096.Text = oriGuaGanZhi[5].ToString();
+            oriGuaGanZhi = op.setupDiZhi(originalGuaCode);
+            lbl091.Text += oriGuaGanZhi[0].ToString();
+            lbl092.Text += oriGuaGanZhi[1].ToString();
+            lbl093.Text += oriGuaGanZhi[2].ToString();
+            lbl094.Text += oriGuaGanZhi[3].ToString();
+            lbl095.Text += oriGuaGanZhi[4].ToString();
+            lbl096.Text += oriGuaGanZhi[5].ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -97,24 +152,8 @@ namespace Trigrams
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            string code = string.Join(null, cbxSL1.Text.Substring(0, 1), cbxSL2.Text.Substring(0, 1), cbxSL3.Text.Substring(0, 1), cbxSL4.Text.Substring(0, 1), cbxSL5.Text.Substring(0, 1), cbxSL6.Text.Substring(0, 1));
-            Arrange op = new Arrange();
-            List<Trigrams64> list;
-            textBox1.Text = string.Empty;
-            //textBox2.Text = code;
-            list = op.get64Gua(0, code);
-
-            textBox1.Text += list[0].name + list[0].code + list[0].description + "\r\n";
-            lblOriginal.Text = list[0].allname;
-            lblDown.Text = list[0].word.Substring(0, 1);
-            lblUp.Text = list[0].word.Substring(1, 1);
-
-            list = op.get64Gua(1, code);
-            textBox1.Text += list[0].name + list[0].code + list[0].description + "\r\n";
-            lblChange.Text = list[0].allname;
-            lblDownChange.Text = list[0].word.Substring(0, 1);
-            lblUpChange.Text = list[0].word.Substring(1, 1);
-
+            show64Gua();
+            showGanZhi();
             panel1.Visible = false;
             //lblOriginal.Visible = false;
             //lblDown.Visible = false;
