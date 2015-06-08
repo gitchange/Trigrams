@@ -21,7 +21,25 @@ namespace Trigrams
         private void Form1_Load(object sender, EventArgs e)
         {
             //Trigrams.Program.InitData();
-            textBox2.Text = DateTime.Now.ToString();
+            initionalData();
+            DateTime dtp = dateTimePicker1.Value;
+            textBox2.Text = dtp.Year.ToString()+"/"+dtp.Month.ToString()+"/"+dtp.Day.ToString() + " " + cbxHour.Text + ":" + cbxMin.Text + ":00";
+            //textBox2.Text = DateTime.Now.ToString();
+        }
+
+        private void initionalData()
+        {
+            for (int i = 0 ; i < 24 ; i++)
+            {
+                cbxHour.Items.Add(i.ToString().PadLeft(2,'0'));
+            }
+            for (int j=0 ; j<60 ; j++)
+            {
+                cbxMin.Items.Add(j.ToString().PadLeft(2, '0'));
+            }
+            dateTimePicker1.Value = DateTime.Now;
+            cbxHour.Text = DateTime.Now.Hour.ToString().PadLeft(2, '0');
+            cbxMin.Text = DateTime.Now.Minute.ToString().PadLeft(2, '0');
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -105,8 +123,11 @@ namespace Trigrams
             lblUpChange.Visible = false;
 
             TaiwanLunisolarCalendar Tlc = new TaiwanLunisolarCalendar();
-            
+
+            DateTime dtp = dateTimePicker1.Value;
+            textBox2.Text = dtp.Year.ToString() + "/" + dtp.Month.ToString() + "/" + dtp.Day.ToString() + " " + cbxHour.Text + ":" + cbxMin.Text + ":00";
             DateTime dt = Convert.ToDateTime(textBox2.Text.Trim());
+            //DateTime dt = Convert.ToDateTime(dateTimePicker1.Value.ToString()+" "+cbxHour.Text+":"+cbxMin.Text+":00");
             EcanChineseCalendar c = new EcanChineseCalendar(dt);
             StringBuilder dayInfo = new StringBuilder();
             SolarTerm solar = new SolarTerm();
@@ -126,10 +147,18 @@ namespace Trigrams
             dayInfo.Append("節日：" + c.DateHoliday + "\r\n");//節日
             dayInfo.Append("干支：" + c.GanZhiDateString + "\r\n");//干支
             dayInfo.Append("正確的年干支：" + c.GanZhiYearBy24 + "\r\n");//正確的年干支干支  
-            dayInfo.Append("正確的月干支：" + c.GanZhiMonthBy24 + "\r\n");//正確的月干支              
+            dayInfo.Append("正確的月干支：" + c.GanZhiMonthBy24 + "\r\n");//正確的月干支  
+            dayInfo.Append("正確的日干支：" + c.GanZhiDayBy24 + "\r\n");//正確的日干支 
+            dayInfo.Append("正確的時干支：" + c.GanZhiHourBy24 + "\r\n");//正確的時干支             
+            dayInfo.Append("當旬空亡：" + c.DiZhiDayPeriodEmptyDie + "\r\n");//當旬空亡             
             dayInfo.Append("星宿：" + c.ChineseConstellation + "\r\n");//星宿
             dayInfo.Append("星座：" + c.Constellation + "\r\n");//星座
             textBox3.Text = dayInfo.ToString();
+            lblYear.Text = "年：" + c.GanZhiYearBy24;
+            lblMonth.Text = "月：" + c.GanZhiMonthBy24;
+            lblDay.Text = "日：" + c.GanZhiDayBy24;
+            lblHour.Text = "時：" + c.GanZhiHourBy24;
+            lblEmptyDie.Text = "空亡：" + c.DiZhiDayPeriodEmptyDie;
         }
     }
 }

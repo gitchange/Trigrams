@@ -155,6 +155,7 @@ namespace Trigrams
         #region 農歷相關數據
         private static string ganStr = "甲乙丙丁戊己庚辛壬癸";
         private static string zhiStr = "子丑寅卯辰巳午未申酉戌亥";
+        private static string dizhiHourStr = "子丑丑寅寅卯卯辰辰巳巳午午未未申申酉酉戌戌亥亥子";
         private static string animalStr = "鼠牛虎兔龍蛇馬羊猴雞狗豬";
         private static string nStr1 = "日一二三四五六七八九";
         private static string nStr2 = "初十廿卅";
@@ -1455,6 +1456,55 @@ new WeekHolidayStruct(11, 4, 5, "感恩節")
                 return gan + zhi ;
             }
         }
+        #endregion
+        #region GanZhiDayBy24 (取日的干支)
+        /// <summary>
+        /// 取干支日表示法
+        /// </summary>
+        public string GanZhiDayBy24
+        {
+            get
+            {
+                int i, offset;
+                TimeSpan ts = this._date - GanZhiStartDay;
+                offset = ts.Days;
+                i = offset % 60;
+                return ganStr[i % 10].ToString() + zhiStr[i % 12].ToString();
+            }
+        }
+        #endregion
+        #region GanZhiHourBy24 (取時辰的干支)
+        /// <summary>
+        /// GanZhiHourBy24 (取時辰的干支)
+        /// </summary>
+        public string GanZhiHourBy24
+        {
+            get
+            {
+                return GetChineseHour(_datetime);
+            }                
+        }
+        #endregion
+        #region DiZhiDayPeriodEmptyDie (取當旬空亡)
+        /// <summary>
+        /// DiZhiDayPeriodEmptyDie (取當旬空亡)
+        /// </summary>
+        public string DiZhiDayPeriodEmptyDie
+        {
+            get
+            {
+                int i, offset , ganNum , zhiNum , first , second;
+                TimeSpan ts = this._date - GanZhiStartDay;
+                offset = ts.Days;
+                i = offset % 60;
+                ganNum = (i % 10) +1;
+                zhiNum = (i % 12)+ 1;
+                second = zhiNum - ganNum;
+                if (second <= 0) second += 12;
+                first = second - 1;
+                return zhiStr[first - 1].ToString() + zhiStr[second - 1].ToString();
+            }
+        } 
         #endregion
         #endregion
         #endregion
