@@ -391,7 +391,7 @@ namespace Trigrams
                     conceal.Add(GuaFamily[i].ToString());
                 }
             }
-            return "";
+            return "123";
         }
 
         #region 取得六十四卦的主宮
