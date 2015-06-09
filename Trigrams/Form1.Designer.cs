@@ -331,9 +331,9 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(607, 395);
+            this.panel1.Location = new System.Drawing.Point(125, 118);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(77, 83);
+            this.panel1.Size = new System.Drawing.Size(413, 224);
             this.panel1.TabIndex = 16;
             // 
             // lblMonth

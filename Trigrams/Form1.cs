@@ -136,6 +136,12 @@ namespace Trigrams
             lbls096.Text = self[5].ToString();
         }
 
+        private void showSixFamily()
+        {
+            Arrange op = new Arrange();
+            op.setupGuaFamily(originalGuaCode);
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -195,6 +201,7 @@ namespace Trigrams
             show64Gua();
             showGuaGanZhi();
             showSelf();
+            showSixFamily();
             panel1.Visible = false;
             //lblOriginal.Visible = false;
             //lblDown.Visible = false;
