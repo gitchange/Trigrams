@@ -86,6 +86,12 @@
             this.lbls093 = new System.Windows.Forms.Label();
             this.lbls092 = new System.Windows.Forms.Label();
             this.lbls091 = new System.Windows.Forms.Label();
+            this.lblv096 = new System.Windows.Forms.Label();
+            this.lblv095 = new System.Windows.Forms.Label();
+            this.lblv094 = new System.Windows.Forms.Label();
+            this.lblv093 = new System.Windows.Forms.Label();
+            this.lblv092 = new System.Windows.Forms.Label();
+            this.lblv091 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox1
@@ -331,9 +337,9 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(125, 118);
+            this.panel1.Location = new System.Drawing.Point(606, 373);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(413, 224);
+            this.panel1.Size = new System.Drawing.Size(86, 87);
             this.panel1.TabIndex = 16;
             // 
             // lblMonth
@@ -553,9 +559,9 @@
             this.lblr096.AutoSize = true;
             this.lblr096.Location = new System.Drawing.Point(180, 166);
             this.lblr096.Name = "lblr096";
-            this.lblr096.Size = new System.Drawing.Size(33, 12);
+            this.lblr096.Size = new System.Drawing.Size(29, 12);
             this.lblr096.TabIndex = 17;
-            this.lblr096.Text = "label3";
+            this.lblr096.Text = "六親";
             this.lblr096.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblr095
@@ -613,9 +619,9 @@
             this.lbls096.AutoSize = true;
             this.lbls096.Location = new System.Drawing.Point(150, 166);
             this.lbls096.Name = "lbls096";
-            this.lbls096.Size = new System.Drawing.Size(33, 12);
+            this.lbls096.Size = new System.Drawing.Size(29, 12);
             this.lbls096.TabIndex = 17;
-            this.lbls096.Text = "label3";
+            this.lbls096.Text = "世應";
             this.lbls096.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbls095
@@ -668,6 +674,66 @@
             this.lbls091.Text = "label3";
             this.lbls091.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // lblv096
+            // 
+            this.lblv096.AutoSize = true;
+            this.lblv096.Location = new System.Drawing.Point(115, 166);
+            this.lblv096.Name = "lblv096";
+            this.lblv096.Size = new System.Drawing.Size(29, 12);
+            this.lblv096.TabIndex = 17;
+            this.lblv096.Text = "伏神";
+            this.lblv096.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblv095
+            // 
+            this.lblv095.AutoSize = true;
+            this.lblv095.Location = new System.Drawing.Point(115, 197);
+            this.lblv095.Name = "lblv095";
+            this.lblv095.Size = new System.Drawing.Size(33, 12);
+            this.lblv095.TabIndex = 17;
+            this.lblv095.Text = "label3";
+            this.lblv095.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblv094
+            // 
+            this.lblv094.AutoSize = true;
+            this.lblv094.Location = new System.Drawing.Point(115, 225);
+            this.lblv094.Name = "lblv094";
+            this.lblv094.Size = new System.Drawing.Size(33, 12);
+            this.lblv094.TabIndex = 17;
+            this.lblv094.Text = "label3";
+            this.lblv094.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblv093
+            // 
+            this.lblv093.AutoSize = true;
+            this.lblv093.Location = new System.Drawing.Point(115, 255);
+            this.lblv093.Name = "lblv093";
+            this.lblv093.Size = new System.Drawing.Size(33, 12);
+            this.lblv093.TabIndex = 17;
+            this.lblv093.Text = "label3";
+            this.lblv093.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblv092
+            // 
+            this.lblv092.AutoSize = true;
+            this.lblv092.Location = new System.Drawing.Point(115, 284);
+            this.lblv092.Name = "lblv092";
+            this.lblv092.Size = new System.Drawing.Size(33, 12);
+            this.lblv092.TabIndex = 17;
+            this.lblv092.Text = "label3";
+            this.lblv092.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblv091
+            // 
+            this.lblv091.AutoSize = true;
+            this.lblv091.Location = new System.Drawing.Point(115, 315);
+            this.lblv091.Name = "lblv091";
+            this.lblv091.Size = new System.Drawing.Size(33, 12);
+            this.lblv091.TabIndex = 17;
+            this.lblv091.Text = "label3";
+            this.lblv091.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -676,31 +742,37 @@
             this.Controls.Add(this.lblc91);
             this.Controls.Add(this.lbl191);
             this.Controls.Add(this.lbls091);
+            this.Controls.Add(this.lblv091);
             this.Controls.Add(this.lblr091);
             this.Controls.Add(this.lbl091);
             this.Controls.Add(this.lblc92);
             this.Controls.Add(this.lbl192);
             this.Controls.Add(this.lbls092);
+            this.Controls.Add(this.lblv092);
             this.Controls.Add(this.lblr092);
             this.Controls.Add(this.lbl092);
             this.Controls.Add(this.lblc93);
             this.Controls.Add(this.lbl193);
             this.Controls.Add(this.lbls093);
+            this.Controls.Add(this.lblv093);
             this.Controls.Add(this.lblr093);
             this.Controls.Add(this.lbl093);
             this.Controls.Add(this.lblc94);
             this.Controls.Add(this.lbl194);
             this.Controls.Add(this.lbls094);
+            this.Controls.Add(this.lblv094);
             this.Controls.Add(this.lblr094);
             this.Controls.Add(this.lbl094);
             this.Controls.Add(this.lblc95);
             this.Controls.Add(this.lbl195);
             this.Controls.Add(this.lbls095);
+            this.Controls.Add(this.lblv095);
             this.Controls.Add(this.lblr095);
             this.Controls.Add(this.lbl095);
             this.Controls.Add(this.lblc96);
             this.Controls.Add(this.lbl196);
             this.Controls.Add(this.lbls096);
+            this.Controls.Add(this.lblv096);
             this.Controls.Add(this.lblr096);
             this.Controls.Add(this.lbl096);
             this.Controls.Add(this.textBox1);
@@ -799,6 +871,12 @@
         private System.Windows.Forms.Label lbls093;
         private System.Windows.Forms.Label lbls092;
         private System.Windows.Forms.Label lbls091;
+        private System.Windows.Forms.Label lblv096;
+        private System.Windows.Forms.Label lblv095;
+        private System.Windows.Forms.Label lblv094;
+        private System.Windows.Forms.Label lblv093;
+        private System.Windows.Forms.Label lblv092;
+        private System.Windows.Forms.Label lblv091;
     }
 }
 

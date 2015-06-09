@@ -380,18 +380,41 @@ namespace Trigrams
         }
         #endregion
 
-        public string setupGuaConceal(string pcode)
+        public string[] setupGuaConceal(string pcode)
         {
             string[] get64gua6family = setupGuaFamily(pcode);
             List<string> conceal = new List<string>();
             for (int i = 0; i < GuaFamily.Count(); i++)
             {
+                //檢查(收集)卦中無六親的類型
                 if (Array.IndexOf(get64gua6family,GuaFamily[i].ToString())<0)
                 {
                     conceal.Add(GuaFamily[i].ToString());
                 }
             }
-            return "123";
+            //取得六十四卦的主宮
+            string get64guahouse = get64GuaHouse(pcode);
+            //取得六十四卦的主宮的 Code
+            var find = from gua in trigrams8
+                       where gua.name == get64guahouse
+                       select gua;
+            List<Trigrams8> house = find.ToList();
+            //取得主宮的六親
+            string[] housefamily = setupGuaFamily(house[0].code + house[0].code);
+            //宣告缺爻位的陣列
+            string[] less = { "", "", "", "", "", "" };
+
+            int lesspos;
+            for (int j = 0 ; j < conceal.Count() ; j++)            
+            {
+                lesspos = Array.IndexOf(housefamily, conceal[j].ToString());
+                //檢查缺少的六親在主宮的爻位，並塞入缺爻位陣列中
+                if (lesspos>= 0)
+                {
+                    less[lesspos] = conceal[j].ToString();
+                }                
+            }
+            return less;
         }
 
         #region 取得六十四卦的主宮
@@ -402,8 +425,8 @@ namespace Trigrams
         /// <returns>回傳：六十四卦的主宮</returns>
         protected string get64GuaHouse(string pcode)
         {
-            List<Trigrams8> get8gua = get8Gua(pcode);
-            return get8gua[0].element;
+            List<Trigrams64> get64gua = get64Gua(0,pcode);
+            return get64gua[0].house;
         } 
         #endregion
 

@@ -120,26 +120,39 @@ namespace Trigrams
             lbl194.Text += GuaGanZhi[3].ToString();
             lbl195.Text += GuaGanZhi[4].ToString();
             lbl196.Text += GuaGanZhi[5].ToString();
-            
-        } 
+
+        }
         #endregion
 
         private void showSelf()
         {
             Arrange op = new Arrange();
             string self = op.setupGuaSelf(originalGuaCode);
-            lbls091.Text = self[0].ToString();
-            lbls092.Text = self[1].ToString();
-            lbls093.Text = self[2].ToString();
-            lbls094.Text = self[3].ToString();
-            lbls095.Text = self[4].ToString();
-            lbls096.Text = self[5].ToString();
+            lbls091.Text = (self[0].ToString() == "0")? "": (self[0].ToString() == "1") ? "世" : "應";
+            lbls092.Text = (self[1].ToString() == "0") ? "" : (self[1].ToString() == "1") ? "世" : "應";
+            lbls093.Text = (self[2].ToString() == "0") ? "" : (self[2].ToString() == "1") ? "世" : "應";
+            lbls094.Text = (self[3].ToString() == "0") ? "" : (self[3].ToString() == "1") ? "世" : "應";
+            lbls095.Text = (self[4].ToString() == "0") ? "" : (self[4].ToString() == "1") ? "世" : "應";
+            lbls096.Text = (self[5].ToString() == "0") ? "" : (self[5].ToString() == "1") ? "世" : "應"; 
         }
 
         private void showSixFamily()
         {
             Arrange op = new Arrange();
-            op.setupGuaFamily(originalGuaCode);
+            string[] sixfamily = op.setupGuaFamily(originalGuaCode);
+            lblr091.Text = sixfamily[0].ToString();
+            lblr092.Text = sixfamily[1].ToString();
+            lblr093.Text = sixfamily[2].ToString();
+            lblr094.Text = sixfamily[3].ToString();
+            lblr095.Text = sixfamily[4].ToString();
+            lblr096.Text = sixfamily[5].ToString();
+            string[] vfamily = op.setupGuaConceal(originalGuaCode);
+            lblv091.Text = vfamily[0].ToString();
+            lblv092.Text = vfamily[1].ToString();
+            lblv093.Text = vfamily[2].ToString();
+            lblv094.Text = vfamily[3].ToString();
+            lblv095.Text = vfamily[4].ToString();
+            lblv096.Text = vfamily[5].ToString();
         }
 
 
