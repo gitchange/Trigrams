@@ -282,25 +282,18 @@ namespace Trigrams
         #region 為六十四卦裝六親
         /// <summary>
         /// 為六十四卦裝六親
-        /// 一二三六外卦宮
         /// </summary>
         /// <param name="pcode"></param>
         /// <returns></returns>
         public string[] setupGuaFamily(string pcode)
         {
-            string guacode8 = string.Empty;            
-            //若世爻在一二三六，則取外卦宮，反之則為內卦宮
-            if (isSelfonInside(pcode))
-            {
-                guacode8 = pcode.Substring(3, 3);
-            }
-            else
-            {
-                guacode8 = pcode.Substring(0, 3);
-            }
-            //取得八卦的屬性
-            List<Trigrams8> get8gua = get8Gua(guacode8);
-            string gua8_5element = get8gua[0].element;
+            //取得六十四卦的主宮
+            string gua64house = get64GuaHouse(pcode);
+            //取得八卦主宮的屬性
+            var get8gua = from gua in trigrams8
+                       where gua.name == gua64house
+                       select gua;
+            string gua8_5element =  get8gua.ToList()[0].element;            
             //取得六十四卦的六爻地支
             string str64guadizhi = setupDiZhi(pcode);
             //定義變數
@@ -318,7 +311,7 @@ namespace Trigrams
             {
                 list64guaelement.Add(dict5[dizhi]);
             }
-            
+
             string[] sixfamily = new string[6];
             //重新編排五行的位置，使宮卦的五行排在第一個位置，並能對應到六親的兄弟
             string[] re5element = offsetList(FiveElement.ToList(), Array.IndexOf(FiveElement, gua8_5element)).ToArray();
@@ -328,7 +321,7 @@ namespace Trigrams
                 pos = Array.IndexOf(re5element, list64guaelement[j].ToString());
                 sixfamily[j] = GuaFamily[pos];
             }
-            return sixfamily; 
+            return sixfamily;
         }
         #endregion
 
@@ -380,6 +373,12 @@ namespace Trigrams
         }
         #endregion
 
+        #region 為六十四卦裝伏神
+        /// <summary>
+        /// 為六十四卦裝伏神
+        /// </summary>
+        /// <param name="pcode"></param>
+        /// <returns></returns>
         public string[] setupGuaConceal(string pcode)
         {
             string[] get64gua6family = setupGuaFamily(pcode);
@@ -387,7 +386,7 @@ namespace Trigrams
             for (int i = 0; i < GuaFamily.Count(); i++)
             {
                 //檢查(收集)卦中無六親的類型
-                if (Array.IndexOf(get64gua6family,GuaFamily[i].ToString())<0)
+                if (Array.IndexOf(get64gua6family, GuaFamily[i].ToString()) < 0)
                 {
                     conceal.Add(GuaFamily[i].ToString());
                 }
@@ -405,17 +404,18 @@ namespace Trigrams
             string[] less = { "", "", "", "", "", "" };
 
             int lesspos;
-            for (int j = 0 ; j < conceal.Count() ; j++)            
+            for (int j = 0; j < conceal.Count(); j++)
             {
                 lesspos = Array.IndexOf(housefamily, conceal[j].ToString());
                 //檢查缺少的六親在主宮的爻位，並塞入缺爻位陣列中
-                if (lesspos>= 0)
+                if (lesspos >= 0)
                 {
                     less[lesspos] = conceal[j].ToString();
-                }                
+                }
             }
             return less;
-        }
+        } 
+        #endregion
 
         #region 取得六十四卦的主宮
         /// <summary>
@@ -425,9 +425,9 @@ namespace Trigrams
         /// <returns>回傳：六十四卦的主宮</returns>
         protected string get64GuaHouse(string pcode)
         {
-            List<Trigrams64> get64gua = get64Gua(0,pcode);
+            List<Trigrams64> get64gua = get64Gua(0, pcode);
             return get64gua[0].house;
-        } 
+        }
         #endregion
 
         #region 判斷"世"爻是否在內卦
@@ -449,7 +449,7 @@ namespace Trigrams
             {
                 return false;
             }
-        } 
+        }
         #endregion
 
         #region 物件的位移
@@ -475,7 +475,7 @@ namespace Trigrams
                 result.Add(list[j]);
             }
             return result;
-        } 
+        }
         #endregion
     }
 
@@ -560,4 +560,6 @@ namespace Trigrams
         }
     }
     #endregion
+
+
 }
